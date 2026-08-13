@@ -1,0 +1,15 @@
+{
+  "name": "toppynl",
+  "description": "Claude Code-plugins van Toppy: takedown-draaiboek voor namaak-/phishingwebshops.",
+  "owner": {
+    "name": "Toppy B.V.",
+    "url": "https://github.com/toppynl"
+  },
+  "plugins": [
+    {
+      "name": "ecom-copycat-takedown",
+      "source": "./",
+      "description": "Merk-neutraal takedown-draaiboek voor namaak-/phishingwebshops die jouw merk misbruiken."
+    }
+  ]
+}

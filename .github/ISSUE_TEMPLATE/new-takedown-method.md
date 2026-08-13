@@ -9,8 +9,14 @@ labels: ["takedown-method", "enhancement"]
 Vul dit zo volledig mogelijk in. Feiten > meningen: beschrijf wat je concreet
 deed en wat het resultaat was, zodat anderen het kunnen reproduceren.
 Verwijder GEEN kopjes; laat een veld leeg als je het niet weet.
-VERWIJDER alle privacygevoelige gegevens (namen, e-mailadressen, ordergegevens,
-kaartnummers) vóór het indienen.
+
+PRIVACY — dit issue is openbaar en gaat over de METHODE, niet over jouw bedrijf:
+- GEEN bedrijfs- of zaakgegevens: geen merknaam, contactpersoon, e-mailadres,
+  vestigingsadres of merkregistratienummer.
+- GEEN persoonsgegevens, order-/klantgegevens of kaartnummers.
+- Beschrijf partijen generiek ("een .nl-registrar", "een webshop in de
+  modebranche"). Namen van registrar/host mogen wél; het namaakdomein alleen
+  als je dat bewust zelf wilt delen.
 -->
 
 ## Samenvatting

@@ -1,5 +1,5 @@
 ---
-name: ecom-copycat-takedown
+name: copycat-takedown
 description: >-
   Takedown-draaiboek voor namaak-/phishingwebshops die het merk van de gebruiker
   misbruiken. Gebruik deze skill ALTIJD zodra iemand een copycat-, namaak-, nep-
@@ -15,8 +15,9 @@ description: >-
 
 # Merk-copycat takedown (merk-neutraal draaiboek)
 
-Merk-neutrale sjabloonversie: doorloop eenmalig het startgesprek (§0) en vul de
-zaakgegevens in, daarna werkt de flow voor elk merk.
+Merk-neutrale sjabloonversie: doorloop eenmalig het startgesprek (§0) en leg de
+zaakgegevens vast in een lokaal bestand (zie "Zaakgegevens" hieronder), daarna
+werkt de flow voor elk merk.
 
 ## Drie doelen (houd deze altijd in het achterhoofd)
 
@@ -70,11 +71,28 @@ stel niet bij elke stap opnieuw een vraag, en sluit af met één compact overzic
 van wat klaarstaat en welke handelingen (verzenden, indienen, beslissen) nog aan
 de gebruiker zijn.
 
-## Eenmalig invullen — vaste zaakgegevens
+## Zaakgegevens — lokaal bestand, nooit in deze skill
 
-Vul dit blok één keer met de gegevens van het merk/de rechthebbende. Alle
-meldingen gebruiken deze waarden. Staat een veld nog op `[…]`, vraag het dan
-éénmalig.
+De vaste gegevens van het merk/de rechthebbende staan **niet** in dit bestand,
+maar in een lokaal bestand **`takedown-zaakgegevens.md`** in de werkmap van de
+gebruiker (dezelfde map als de dossiers). Twee redenen:
+
+1. **Updates.** Deze skill wordt als plugin beheerd; een update overschrijft
+   lokale bewerkingen. Gegevens die in de skill zelf staan, gaan dan verloren.
+2. **Privacy.** Bedrijfs- en contactgegevens zijn privé. Ze horen niet in een
+   publieke repo en mogen **nooit** worden meegestuurd in een feature request of
+   GitHub-issue (§9).
+
+Werkwijze:
+
+1. Zoek `takedown-zaakgegevens.md` in de werkmap. Gevonden → inlezen en de
+   waarden gebruiken in alle meldingen.
+2. Niet gevonden → vraag de gegevens éénmalig uit (onderstaande tabel) en maak
+   het bestand aan. Vertel de gebruiker erbij: *dit bestand blijft lokaal op je
+   eigen machine; commit het niet naar een publieke repo en de skill neemt het
+   nooit op in issues of andere publicaties.*
+3. Staat een veld nog op `[…]`, vraag het dan éénmalig aan en werk het bestand
+   bij.
 
 | Veld | Waarde (invullen) |
 |---|---|
@@ -88,7 +106,8 @@ meldingen gebruiken deze waarden. Staat een veld nog op `[…]`, vraag het dan
 | Echt vestigingsadres | `[Straat 1, 0000 AA Plaats]` (om verzonnen adressen op nepsites te herkennen) |
 | Merkgemachtigde (optioneel) | `[naam / bureau]` |
 
-Zodra dit is ingevuld heeft elke nieuwe case alleen nog het **namaakdomein** nodig.
+Zodra dit bestand bestaat heeft elke nieuwe case alleen nog het **namaakdomein**
+nodig.
 
 ## Aanpak en volgorde (richtlijn, geen wet)
 
@@ -268,10 +287,24 @@ dat dan terug als **feature request (GitHub-issue)**. Doe dat zo:
 1. **Documenteer het eerst in het dossier**: wat is geprobeerd, welk kanaal
    werkte, doorlooptijd, en geanonimiseerd bewijs (casenummer/bevestiging).
 2. **Stel een feature request op** volgens het sjabloon
-   `.github/ISSUE_TEMPLATE/new-takedown-method.md`. Vul elk kopje in op basis van
-   de case. **Verwijder alle privacygevoelige gegevens** (namen, e-mailadressen,
-   order-/klantgegevens, kaartnummers) — beschrijf skimmers functioneel, plak
-   nooit gestolen data.
+   `new-takedown-method.md` (staat in de repo onder `.github/ISSUE_TEMPLATE/`;
+   online op
+   https://github.com/toppynl/ecom-copycat-takedown/blob/main/.github/ISSUE_TEMPLATE/new-takedown-method.md
+   en het wordt ook automatisch geladen via de issue-link hieronder). Vul elk
+   kopje in op basis van
+   de case, **volledig geanonimiseerd** — een issue is openbaar en gaat over de
+   *methode*, nooit over het bedrijf of de case zelf:
+   - Neem **niets** op uit `takedown-zaakgegevens.md` of het dossier: geen
+     merknaam, geen bedrijfsnaam, geen contactpersoon, e-mailadres, adres of
+     merkregistratienummer.
+   - Geen order-/klantgegevens of kaartnummers; beschrijf skimmers functioneel,
+     plak nooit gestolen data.
+   - Beschrijf partijen generiek: "een .nl-registrar", "een webshop in de
+     modebranche", "host in land X". Namen van registrar/host mógen (dat is
+     juist nuttig), het namaakdomein alleen als de gebruiker daar expliciet mee
+     instemt.
+   - Controleer vóór het klaarzetten de hele issue-tekst nog één keer op deze
+     punten.
 3. **Dien het in.** Twee routes, afhankelijk van wat is afgesproken/beschikbaar:
    - **Automatisch** (als de GitHub-CLI `gh` beschikbaar en ingelogd is):
      ```bash
@@ -289,7 +322,9 @@ dat dan terug als **feature request (GitHub-issue)**. Doe dat zo:
    akkoord geven (conform §0). Verzin geen resultaten — rapporteer alleen wat
    echt is waargenomen.
 
-Zie `CONTRIBUTING.md` voor de bredere spelregels (privacy, verantwoord gebruik,
+Zie `CONTRIBUTING.md` in de repo
+(https://github.com/toppynl/ecom-copycat-takedown/blob/main/CONTRIBUTING.md)
+voor de bredere spelregels (privacy, verantwoord gebruik,
 issues vs. pull requests).
 
 ## Referenties
