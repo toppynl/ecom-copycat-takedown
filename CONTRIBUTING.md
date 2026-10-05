@@ -49,7 +49,7 @@ Alles van de skill zelf staat onder `skills/copycat-takedown/`:
 - `SKILL.md` — het draaiboek (de stappen).
 - `references/meldingen.md` — meldingsteksten/sjablonen.
 - `references/voorbeeldcase.md` — geanonimiseerde lessen.
-- `scripts/` — hulpscripts (recon, copycat-ontdekking).
+- `scripts/` — hulpscripts (recon, copycat-ontdekking, CT-zoeker).
 - `assets/dossier-template.md` — het lege dossier-sjabloon.
 
 Daarnaast: `.claude-plugin/` bevat het plugin-manifest voor Claude Code (alleen

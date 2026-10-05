@@ -2,7 +2,7 @@
   "name": "ecom-copycat-takedown",
   "displayName": "E-com Copycat Takedown",
   "description": "Merk-neutraal takedown-draaiboek voor namaak-/phishingwebshops: DNS/WHOIS-recon, bewijs vastleggen, dossier bijhouden en meldingen klaarzetten voor registrar, host, Cloudflare, Google Safe Browsing en Microsoft SmartScreen.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Toppy B.V.",
     "url": "https://github.com/toppynl"

@@ -255,14 +255,29 @@ gedaan / drafts te verzenden / formulieren in te dienen / open beslissingen.
   TLD's), resolvet ze, filtert de allowlist en markeert Cloudflare-treffers als
   verdacht. Verifieer elke ⚠-hit via `who.is` + browser. Voeg merk-/sectorspecifieke
   affixes toe als extra argumenten. Meerlaags, want geen methode dekt alles:
-  (1) `discover.py`, (2) **Certificate Transparency** (crt.sh/CertSpotter of een
-  merkbewakingsdienst — laat de gebruiker die alert instellen; een alertmail kan
-  de skill oppikken als mailboxtoegang is afgesproken), (3) urlscan.io-pivot op
-  paginatitel/favicon, (4) merkbewaking via de merkgemachtigde.
+  (1) `discover.py`, (2) **Certificate Transparency** (zie hieronder),
+  (3) urlscan.io-pivot op paginatitel/favicon, (4) merkbewaking via de
+  merkgemachtigde.
+- **Certificate Transparency (laag 2):**
+  ```bash
+  python3 scripts/ct_search.py <merknaam> [--sinds-maanden N] [--csv pad]
+  ```
+  Zoekt in crt.sh naar recent uitgegeven certificaten voor hostnamen die met de
+  merknaam beginnen en toont per hostname de eerste/laatste certificaatdatum,
+  nieuwste eerst (gegroepeerd per registreerbaar domein; allowlist bovenin het
+  script). Les: vindt namen die de permutatie-zeef mist (bv.
+  merk+categorie+land-combinaties); crt.sh-web ligt vaak plat, het script
+  gebruikt de publieke Postgres-ingang (vereist de `psql`-CLI,
+  `brew install libpq`; bij overbelasting probeert het script het zelf opnieuw,
+  dat kan minuten duren). Alleen prefix-matches: een naam als `shopmerk.com`
+  vind je hier niet, combineer dus met `discover.py`. Verifieer nieuwe namen
+  zoals een ⚠-hit. Als aanvulling blijft een externe CT-alert (CertSpotter of
+  een merkbewakingsdienst) zinvol — laat de gebruiker die instellen; een
+  alertmail kan de skill oppikken als mailboxtoegang is afgesproken.
 - **Follow-up:** een werkbaar ritme is de eerste dagen dagelijks, daarna om de
   ~48 uur tot ~2 weken — pas aan naar wens. Gebruik scheduled-task-tools die in
   dezelfde sessie terugkomen. Elke check: mailbox (indien afgesproken),
-  sitestatus, `discover.py`, dossier bijwerken. Lange stilte → escalatie
+  sitestatus, `discover.py` en `ct_search.py`, dossier bijwerken. Lange stilte → escalatie
   overwegen (rappel registrar, takedowndienst, merkgemachtigde).
 - **Na schorsing:** afrondingschecklist in het dossier-sjabloon.
 
@@ -335,3 +350,4 @@ issues vs. pull requests).
 - `assets/dossier-template.md` — leeg dossier-sjabloon voor §7.
 - `scripts/recon.py` — DNS-recon + Cloudflare-detectie (§1).
 - `scripts/discover.py` — permutatie-zeef om copycats te ontdekken (§8).
+- `scripts/ct_search.py` — Certificate Transparency-zoeker via crt.sh-Postgres (§8).
