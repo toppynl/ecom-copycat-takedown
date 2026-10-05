@@ -57,6 +57,7 @@ Kort: **op je eigen machine.**
 | `skills/copycat-takedown/assets/dossier-template.md` | Leeg dossier-sjabloon per case. |
 | `skills/copycat-takedown/scripts/recon.py` | DNS-recon + Cloudflare-detectie. |
 | `skills/copycat-takedown/scripts/discover.py` | Permutatie-zeef om lookalike-domeinen te vinden. |
+| `skills/copycat-takedown/scripts/ct_search.py` | Certificate Transparency-zoeker (crt.sh via publieke Postgres) naar nieuwe merk-hostnamen. |
 | `.claude-plugin/` | Plugin-manifest + marketplace-definitie voor Claude Code. |
 
 ## Belangrijk
